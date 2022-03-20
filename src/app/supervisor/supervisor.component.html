@@ -1,0 +1,60 @@
+<div style="
+border-radius: 10px;
+margin: 16px;
+margin-left: 32px;">
+<div>
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"><img src="{{row.image}}" alt="" srcset="" style="height: 50px;width: 50px;"></td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PHONE </th>
+        <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="employee">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMPLOYEES </th>
+        <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isBlocked">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> BLOCK/UNBLOCK </th>
+        <td mat-cell *matCellDef="let row"><button *ngIf="!row.isBlocked" mat-raised-button color="primary" (click)='blockUser(row.id,row.isBlocked)'>BLOCK</button>
+            <button *ngIf="row.isBlocked" mat-raised-button color="warn" (click)='blockUser(row.id,row.isBlocked)'>UNBLOCK</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="addEmployee">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ADD EMPLOYEE </th>
+        <td mat-cell *matCellDef="let row"><button  mat-raised-button color="primary" *ngIf="!row.employeeId.length" (click)="openDialog(row.id)">ADD</button>
+            <button *ngIf="row.employeeId.length" mat-raised-button color="warn" (click)="updateEmployee(row.id,[],[])">REMOVE</button></td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+  </div>
+
+  
+  

@@ -1,0 +1,67 @@
+<div style="
+border-radius: 10px;
+margin: 16px;
+margin-left: 32px;">
+<div>
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
+        <td mat-cell *matCellDef="let row">{{row.customerName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerContact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CONTACT </th>
+        <td mat-cell *matCellDef="let row"> {{row.customerContact}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMPLOYEE </th>
+        <td mat-cell *matCellDef="let row"> {{row.employeeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> AVAILABLE </th>
+        <td mat-cell *matCellDef="let row">{{row.paymentMethod}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subscriptiondetails">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> SUBSCRIPTION </th>
+        <td mat-cell *matCellDef="let row">{{row.subscriptionAmount}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="userAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ADDRESS </th>
+        <td mat-cell *matCellDef="let row">{{row.userAddress}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="user_requirements">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> REQUIREMENTS </th>
+        <td mat-cell *matCellDef="let row">{{row.user_requirements}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="addEmployee">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ADD EMPLOYEE </th>
+        <td mat-cell *matCellDef="let row"><button  mat-raised-button color="primary" *ngIf="!row.employeeName" (click)="openDialog(row.id)">ADD</button>
+            <button *ngIf="row.employeeName" mat-raised-button color="warn" (click)="updateEmployee(row.id,'','','','','')">REMOVE</button></td>
+      </ng-container>
+
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+  </div>
+  

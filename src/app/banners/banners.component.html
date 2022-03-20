@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+    <mat-card-title-group>
+      <mat-card-title><button mat-raised-button color="primary" (click)="inputField.click()">UPLOAD BANNER</button></mat-card-title>
+      <mat-card-subtitle>Select an Image to upload</mat-card-subtitle>
+      <img mat-card-image [src]="imgSrc" style="height: 150px;width: 150px;margin: 10px;">  
+    </mat-card-title-group>
+    <mat-card-content>
+      <input #inputField type="file" hidden (change)="uploadImage($event)">
+    </mat-card-content>
+  </mat-card>
+  <div class="text-center"><h3 class="text-center">List Of Items Added</h3><mat-icon>arrow_downward</mat-icon></div>
+  <mat-nav-list style="margin: 50px;" *ngFor="let img of images">
+    <mat-list-item style="height: fit-content;"> 
+      <img matLine src="{{img.url}}" alt="" style="height: 150px;width: 150px;margin: 10px;">
+       <button mat-icon-button (click)="deleteFileFromStorage(img.name)">
+          <mat-icon>delete</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>

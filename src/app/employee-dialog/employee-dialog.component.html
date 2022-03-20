@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>SELECT EMPLOYEE</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let emp of employee" [value]="emp">
+          {{emp.name}}
+        </mat-list-option>
+      </mat-selection-list> 
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button  mat-dialog-close cdkFocusInitial (click)="doAction()" color="primary">Select</button>
+  </mat-dialog-actions>
+<h4>Option selected: {{shoes.selectedOptions.selected[0]?.value.name}}</h4>

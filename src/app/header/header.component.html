@@ -1,0 +1,64 @@
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    AAYA ADMIN
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
+        <h4 class="name">John Smith</h4>
+        <p class="designation">Software Engineer</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="dashboard">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="addBanner">
+            <mat-icon>add</mat-icon>
+            <span>Banner</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="home">
+            <mat-icon>person</mat-icon>
+            <span>Users</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="services">
+            <mat-icon>room_service</mat-icon>
+            <span>Manage Services</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="employee">
+            <mat-icon>assignment_ind</mat-icon>
+            <span>Employees</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="supervisor">
+            <mat-icon>supervisor_account</mat-icon>
+            <span>Supervisors</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="orders">
+            <mat-icon>card_giftcard</mat-icon>
+            <span>Manage Orders</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" (click)="onClick()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
